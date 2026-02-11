@@ -1,0 +1,76 @@
+Commands:
+First you need to create map and set active map you modifying.
+To create map use:
+/create_map mapName
+To set active map use:
+/set_map mapName <- Map name can only contain a-z A-Z 0-9 symbols
+Now automatically sets active map in channels that go: mapName-map-updates
+so in any channel that is named like this, you don't need to set active map, it automatically sets for you
+so switching between games is much easier.
+/set_map_status mapName status
+status: open or locked
+Status open, means anyone can edit map, can join map as player;
+Status locked means, only joined players and map creator can edit map. No more players can join
+/join mapName <- join an open map to be able to edit even if map is locked
+/leave mapName <- leave an open map
+/show_map_info mapName <- information of map, status if open/locked and player list
+
+
+For easy of setup suggest first command after map creation use
+/add_tile setup 0
+This adds a template with positions
+
+Now additional commands:
+/add_tile tileName positionOnMap
+(We using somno template positions on map. from setup template and you see positions.
+Also we support TopLeft, TopRight, BottomLeft and BottomRight positions coresponding to TL, TR, BL, BR
+Mecatol position is MR)
+/add_tile_list tileList <- tile list is code from map Generators like TTS uses, example: https://ti4-map-generator.derekpeterson.ca/
+You can use also tileID, so liek TI4 marks tiles 01 is Jord for example
+/list_tiles <- lists all tiles, use starting number id to add to map
+/remove_tile tileName or position
+/list_maps <- lists all available maps that are created
+/list_planets <- lists all available planets
+/delete_map <-deletes your map, only can delete the map you created
+/show_map mapName <- displays the map
+If you have active map set, it shows your active map if no map name is defines
+/list_units <- lists all possible units
+/add_cc colorList tile or position <- add's cc to system: colorList can be pink,red,black as example/
+/remove_cc color tile or position <- remove's cc from system: ccolorList can be pink,red,black as example/
+/remove_all_cc confirmation(YES) <- need to type in YES, will remove all CC's from active map
+/add_control color tile planetList <- need to specify tile and planetList, example /add_control pink 3a arnor,lor
+/remove_control color tile planet
+and most interesting is
+/add_units color tile unitList
+/remove_units color tile unitList
+/remove_all_units color tile
+/add_damage_unit color tile unitList
+/remove_damage_unit color tile unitList
+/remove_damage_all_unit color tile
+
+unitList examples and explanation. If dont specify planet, all units go into space
+Listing only unit list, so add into command that you want
+dn <- sinle dread into space
+dread <- same sinle dread into space
+3 dn <- 3 dreads added into space
+3 dn, 2 destroyers <- 3dread and 2 dd added into space
+3 dn, 2 dd, gf quann <- 3 dread and 2dd added into space, 1 gf added onto planet quann
+ws, 6 ff, sd quann, 3 inf quann, mech quann <- warsun and 6 fighters added into space, spacedock, 3 infantry and mech added into quann
+
+/move_units color systemFrom unitList systemTo unitList addCC
+Standard fields to add tile/system, unit list same as add, remove, and we have optional field addCC, type anything in to not add cc into moved system
+Example:
+/move_units pink quann 2 dn, dd, gf, gf quann wellon 2 dn, dd, 2 gf wellon
+
+now: add_units, remove_units, move_units command, for planet name, you can use short of existing planet
+example
+Arnor/Lor, can use a and l, or ar or arno, or lo
+Sakulag/Lazar example: s and l, or sa and la
+Abyz/Fria like a and f etc
+so you don't need full name, can use first letter or few first letters, if system with same starting letter like
+Tequran/Torkan, can use te and to 🙂
+hope helps speed things up
+
+/add_token tokenName system/tile planetNameOptional <- same as add control counter, specify token and planet name is optional
+/remove_token tokenName system/tile planetNameOptional <- same as add control counter, specify token and planet name is optional
+Attachement tokens can only be added to planets
